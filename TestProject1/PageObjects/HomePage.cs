@@ -19,17 +19,18 @@ namespace TestProject1.PageObjects
 		public HomePage(IWebDriver driver)
 		{
 			this.driver = driver;
-			wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(30));
+			wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));
 			jse = (IJavaScriptExecutor)driver;
 		}
 
 		public void NavigateToHomePage()
 		{
 			string homePageURL = ConfigurationManager.AppSettings["baseURL"].ToString();
+			driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
 			driver.Url = homePageURL;
 		}
 
-		public void ClickContactUsButton()
+		public void ScrollAndClickContactUsButton()
 		{
 			jse.ExecuteScript("arguments[0].scrollIntoView();", ContactUsButton);
 			ContactUsButton.Click();
