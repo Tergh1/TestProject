@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,11 +13,13 @@ namespace TestProject1.PageObjects
 	public partial class HomePage
 	{
 		private IWebDriver driver;
+		private WebDriverWait wait;
 		private IJavaScriptExecutor jse;
 
 		public HomePage(IWebDriver driver)
 		{
 			this.driver = driver;
+			wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(30));
 			jse = (IJavaScriptExecutor)driver;
 		}
 

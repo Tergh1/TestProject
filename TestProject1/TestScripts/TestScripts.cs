@@ -9,8 +9,7 @@ using TestProject1.PageObjects;
 namespace TestProject1.TestScripts
 {
 	[TestFixture]
-	[Parallelizable]
-	public class TestScript1 : TestScriptsSetup
+	public partial class TestScripts
 	{
 		public static string[] InvalidEmailData()
 		{
@@ -28,7 +27,7 @@ namespace TestProject1.TestScripts
 				homePage.NavigateToHomePage();
 				test.Info("Step1 completed: Visit http://www.musala.com/ ");
 
-				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
 				homePage.ClickContactUsButton();
 				test.Info("Step2 completed: Scroll down and go to ‘Contact Us’");
 
@@ -36,11 +35,10 @@ namespace TestProject1.TestScripts
 				contactData.Name = "Dinka Ivanova";
 				contactData.Email = email;
 				contactData.Subject = "Candidacy";
-				contactData.YourMessage = "I am candidate for your vacant position.";
+				contactData.YourMessage = "I am a candidate for your vacant position.";
 				homePage.FillContactUsFormAndSubmit(contactData);
 				test.Info("Step3, Step 4 and Step5 completed: Fill all required fields except email.Under email field enter string with wrong email format (e.g. test@test).Click ‘Send’ button.");
 
-				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 				Assert.IsTrue(homePage.InvalidEmailErrorMessage.Displayed);
 				test.Info("Step6 completed: Verify that error message ‘The e-mail address entered is invalid.’ appears");
 
@@ -48,17 +46,12 @@ namespace TestProject1.TestScripts
 			}
 			catch(Exception e)
 			{
-				Assert.Fail(e.Message);
 				test.Fail(e.Message);
+				Assert.Fail(e.Message);
 			}
 		}
 		
-	}
 
-	[TestFixture]
-	[Parallelizable]
-	public class TestScript2 : TestScriptsSetup
-	{
 		[Test]
 		public void TestCase2()
 		{
@@ -69,12 +62,12 @@ namespace TestProject1.TestScripts
 				HomePage homePage = new HomePage(driver);
 				homePage.NavigateToHomePage();
 				test.Info("Step1 completed: Visit http://www.musala.com/ ");
+				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 
-				Thread.Sleep(1000);
 				CompanyPage compPage = homePage.ClickCompanyTab();
 				test.Info("Step2 completed: Click ‘Company’ tap from the top");
+				Thread.Sleep(1000);
 
-				Thread.Sleep(2000);
 				Assert.AreEqual(Resources.Resources.COMPANYURL, driver.Url);
 				test.Info("Ste3 completed: Verify that the correct URL (http://www.musala.com/company/) loads");
 
@@ -94,7 +87,7 @@ namespace TestProject1.TestScripts
 					}
 				}
 
-				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+				
 				fPage.AllowCookiesButton.Click();
 
 				Thread.Sleep(1000);
@@ -106,16 +99,11 @@ namespace TestProject1.TestScripts
 			}
 			catch (Exception e)
 			{
-				Assert.Fail(e.Message);
 				test.Fail(e.Message);
+				Assert.Fail(e.Message);
 			}
 		}
-	}
 
-	[TestFixture]
-	[Parallelizable]
-	public class TestScript3: TestScriptsSetup
-	{
 		[Test]
 		[TestCase("", "", "", "")]
 		[TestCase("test", "test", "test", "test")]
@@ -128,11 +116,11 @@ namespace TestProject1.TestScripts
 				HomePage homePage = new HomePage(driver);
 				homePage.NavigateToHomePage();
 				test.Info("Step1 completed: Visit http://www.musala.com/ ");
+				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 
 				CareersPage careersPage = homePage.ClickCareersTab();
 				test.Info("Step2 completed: Navigate to Careers menu (from the top)");
 
-				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 				JoinUsPage juPage = careersPage.ClickCheckOurOpenPositionsButton();
 				test.Info("Ste3 completed: Click ‘Check our open positions’ button");
 
@@ -142,7 +130,6 @@ namespace TestProject1.TestScripts
 				juPage = juPage.SelectLocationByText("Anywhere");
 				test.Info("Step5 completed: From the dropdown ‘Select location’ select ‘Anywhere’");
 
-				driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 				JobPage jobPage = juPage.ChooseOpenPositionByName("Experienced Automation QA Engineer");
 				test.Info("Step6 completed: Choose open position by name (e.g. Experienced Automation QA Engineer)");
 
@@ -198,16 +185,11 @@ namespace TestProject1.TestScripts
 			}
 			catch (Exception e)
 			{
-				Assert.Fail(e.Message);
 				test.Fail(e.Message);
+				Assert.Fail(e.Message);
 			}
 		}
-	}
 
-	[TestFixture]
-	[Parallelizable]
-	public class TestScript4 : TestScriptsSetup
-	{
 		[Test]
 		public void TestCase4()
 		{
@@ -234,8 +216,8 @@ namespace TestProject1.TestScripts
 			}
 			catch (Exception e)
 			{
-				Assert.Fail(e.Message);
 				test.Fail(e.Message);
+				Assert.Fail(e.Message);
 			}
 		}
 	}

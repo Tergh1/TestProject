@@ -9,7 +9,7 @@ namespace TestProject1.PageObjects
 {
 	public partial class HomePage
 	{
-		public IWebElement ContactUsButton => driver.FindElement(By.CssSelector("button.contact-label.btn.btn-1b"));
+		public IWebElement ContactUsButton => wait.Until(driver => driver.FindElement(By.CssSelector("button.contact-label.btn.btn-1b")));
 
 		#region ContactUsForm
 		public IWebElement NameField => driver.FindElement(By.Id("cf-1"));
@@ -22,13 +22,13 @@ namespace TestProject1.PageObjects
 
 		public IWebElement SendButton => driver.FindElement(By.CssSelector("input.wpcf7-form-control.has-spinner.wpcf7-submit.btn-cf-submit"));
 
-		public IWebElement InvalidEmailErrorMessage => driver.FindElement(By.CssSelector("span.wpcf7-not-valid-tip"));
+		public IWebElement InvalidEmailErrorMessage => wait.Until(driver => driver.FindElement(By.CssSelector("span.wpcf7-not-valid-tip")));
 		#endregion
 
 		#region Tabs
-		public IWebElement CompanyTab => driver.FindElement(By.XPath("/html/body/header/nav[2]/div/div/ul/li[1]/a"));
+		public IWebElement CompanyTab => wait.Until(driver => driver.FindElement(By.XPath("/html/body/header/nav[2]/div/div/ul/li[1]/a")));
 
-		public IWebElement CareersTab => driver.FindElement(By.XPath("/html/body/header/nav[2]/div/div/ul/li[5]/a"));
+		public IWebElement CareersTab => wait.Until(driver => driver.FindElement(By.XPath("/html/body/header/nav[2]/div/div/ul/li[5]/a")));
 		#endregion
 	}
 }

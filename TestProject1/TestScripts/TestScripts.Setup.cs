@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace TestProject1.TestScripts
 {
 	[TestFixture]
-	public class TestScriptsSetup
+	public partial class TestScripts
 	{
 		internal IWebDriver driver;
 		internal ExtentReports report;
@@ -29,7 +29,9 @@ namespace TestProject1.TestScripts
 
 			ExtentHtmlReporter reporter = new ExtentHtmlReporter(reportPath);
 			report = new ExtentReports();
-			report.AttachReporter(reporter);	
+			report.AttachReporter(reporter);
+
+			
 		}
 
 		[SetUp]
@@ -59,6 +61,7 @@ namespace TestProject1.TestScripts
 		[OneTimeTearDown]
 		public void TearDown()
 		{
+			
 			report.Flush();
 		}
 	}

@@ -9,7 +9,7 @@ namespace TestProject1.PageObjects
 {
 	public partial class CompanyPage
 	{
-		public IWebElement LeadershipSection => driver.FindElement(By.ClassName("company-members"));
+		public IWebElement LeadershipSection => wait.Until(driver => driver.FindElement(By.ClassName("company-members")));
 
 		public IWebElement FacebookLink => driver.FindElement(By.XPath("/html/body/footer/div/div/a[4]"));
 	}
